@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
 	}
 	reset():void{
 		this.boule_max_weight = 0;
-		this.selectedBoule = 0;
+		this.selectedBoule = null;
 		this.max_weight = Math.floor((Math.random() * this.nbreBoules) + 1);
 		this.boules[this.max_weight - 1].weight = 15;
 		for(var i = 0; i < this.nbreBoules; i++){
