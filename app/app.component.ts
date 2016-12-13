@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
 	iterations:number;
 	boule_max_weight:number;
 	selectedBoule:Boule;
+	selection:boolean;
 	ngOnInit(): void {
 		this.remplir_tab();
 		this.reset();
@@ -22,32 +23,31 @@ export class AppComponent implements OnInit {
 		this.selectedBoule = boule;
 	}
 	find():void{
-		//if((this.nbreBoules % 2) == 0){
-			var plateau1 = 0;
-			var plateau2 = 0;
-			var jeton = this.nbreBoules;
-			var init = 0;
-			var it = 0;
-			var moitie = (jeton + init)/2;
-			do{
-				it++;
-				for(var i = init; i < moitie; i++)
-					plateau1 += this.boules[i].weight;
-				for(var i = moitie; i < jeton; i++)
-					plateau2 += this.boules[i].weight;
-				if(plateau1 < plateau2){
-					init = moitie;
-				}
-				else{
-					jeton = moitie;
-				}
-				moitie = (jeton + init)/2;
-				plateau1 = 0;
-				plateau2 = 0;
-			}while((jeton - init) > 1);
-			this.boule_max_weight = init + 1;
-			this.iterations = it;
-		//}
+		var plateau1 = 0;
+		var plateau2 = 0;
+		var jeton = this.nbreBoules;
+		var init = 0;
+		var it = 0;
+		var moitie = (jeton + init)/2;
+		do{
+			it++;
+			for(var i = init; i < moitie; i++)
+				plateau1 += this.boules[i].weight;
+			for(var i = moitie; i < jeton; i++)
+				plateau2 += this.boules[i].weight;
+			if(plateau1 < plateau2){
+				init = moitie;
+			}
+			else{
+				jeton = moitie;
+			}
+			moitie = (jeton + init)/2;
+			plateau1 = 0;
+			plateau2 = 0;
+		}while((jeton - init) > 1);
+		this.boule_max_weight = init + 1;
+		this.iterations = it;
+		this.selection = (this.selectedBoule.id == this.boule_max_weight) ? true : false;
 	}
 
 	remplir_tab(){
