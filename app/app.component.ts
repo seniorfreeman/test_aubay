@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
 	iterations:number;
 	boule_max_weight:number;
 	selectedBoule:Boule;
-	selection:boolean;
 	ngOnInit(): void {
 		this.remplir_tab();
 		this.reset();
@@ -47,7 +46,6 @@ export class AppComponent implements OnInit {
 		}while((jeton - init) > 1);
 		this.boule_max_weight = init + 1;
 		this.iterations = it;
-		this.selection = (this.selectedBoule.id == this.boule_max_weight) ? true : false;
 	}
 
 	remplir_tab(){
